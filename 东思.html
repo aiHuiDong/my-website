@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大连东思企业管理有限公司 | 动态简约版官网</title>
+    <style>
+        :root {
+            --primary: #1A2238;
+            --accent: #FF6A3D;
+            --light: #FFFFFF;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, 'Microsoft YaHei', sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            overflow: hidden;
+            color: var(--light);
+        }
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #1A2238 0%, #2C3A6E 100%);
+        }
+        .overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+        nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            z-index: 10;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        .nav-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        .center-card {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: 90%;
+            max-width: 700px;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        .headline {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+        .subhead {
+            font-size: 1.6rem;
+            font-weight: 300;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+        .contact-block {
+            background: rgba(255,255,255,0.15);
+            border-radius: 10px;
+            padding: 1.8rem;
+            margin: 2rem 0;
+        }
+        .contact-title {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+        .phone-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.5rem;
+        }
+        .email {
+            font-size: 1.4rem;
+            margin-bottom: 1.8rem;
+        }
+        .cta-button {
+            background: var(--accent);
+            color: var(--light);
+            border: none;
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+        }
+        .cta-button:hover {
+            background: #e05a2a;
+            transform: translateY(-3px);
+        }
+        @media (max-width: 768px) {
+            .center-card {
+                padding: 2rem;
+                width: 95%;
+            }
+            .headline {
+                font-size: 2.5rem;
+            }
+            .subhead {
+                font-size: 1.2rem;
+            }
+            .phone-number {
+                font-size: 1.8rem;
+            }
+            .email {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="video-background">
+        <div class="overlay"></div>
+    </div>
+
+    <nav>
+        <div class="logo">大连东思企业管理有限公司</div>
+        <div class="logo">DS</div>
+    </nav>
+
+    <div class="center-card">
+        <h1 class="headline">让品牌影响力<span style="color: var(--accent);">无限扩展</span></h1>
+        <p class="subhead">专业营销策略 + 数据驱动执行 = 可衡量的增长</p>
+
+        <div class="contact-block">
+            <div class="contact-title">立即联系我们</div>
+            <div class="phone-number">15998407060</div>
+        </div>
+        <button class="cta-button" onclick="callDutyPhone()">拨打电话</button>
+
+<script>
+    // 判断是否为手机设备（更全面）
+    function isMobileDevice() {
+        return /android|iphone|ipad|ipod|mobile/i.test(navigator.userAgent);
+    }
+
+    // 通用拨号功能（带手机/PC 处理）
+    function callPhone(phoneNumber) {
+        if (isMobileDevice()) {
+            if (confirm(`确定要拨打电话：${phoneNumber} 吗？`)) {
+                window.location.href = `tel:${phoneNumber}`;
+            }
+        } else {
+            alert(`请使用手机拨打：${phoneNumber}`);
+        }
+    }
+
+    // 动态值班电话（示例：工作时间和非工作时间）
+    function callDutyPhone() {
+        const hour = new Date().getHours();
+        // 你给的真实号码
+        const dayPhone = "15998407060";        // 白天值班
+        const nightPhone = "15998407060";      // 晚上也同一个
+
+        // 示例：8:00 - 18:00 白班，其它时间夜班
+        const phone = (hour >= 8 && hour < 18) ? dayPhone : nightPhone;
+
+        callPhone(phone);
+    }
+
+    // PC端阻止所有 tel: 链接直接触发（增强兼容性）
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+            link.addEventListener("click", function (e) {
+                if (!isMobileDevice()) {
+                    e.preventDefault();
+                    const num = this.getAttribute("href").replace("tel:", "");
+                    alert(`请使用手机拨打：${num}`);
+                }
+            });
+        });
+    });
+</script>
+
+    </div>
+</body>
+</html>
